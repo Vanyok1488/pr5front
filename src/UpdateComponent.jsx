@@ -1,5 +1,5 @@
 import axios from "./axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 function UpdateComponent() {
     const { id } = useParams()
@@ -11,13 +11,12 @@ function UpdateComponent() {
     useEffect(() => {
         axios.get("/getComponent/" + id)
             .then(result => {
-                // console.log(result)
                 setName(result.data.name)
                 setPrice(result.data.price)
                 setQuantity(result.data.quantity)
             })
             .catch(err => console.log(err))
-    }, [])
+    }, [id])
 
     const Update = (e) => {
         e.preventDefault()
